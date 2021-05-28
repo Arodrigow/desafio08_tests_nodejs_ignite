@@ -8,7 +8,6 @@ import { ShowUserProfileUseCase } from "./ShowUserProfileUseCase";
 
 describe("Show user profile if autheticated", () => {
   let user: User;
-  let userNotLogged: User;
   let userSession: IAuthenticateUserResponseDTO;
   let inMemoryUsersRepository: InMemoryUsersRepository;
   let createUserUseCase: CreateUserUseCase;
