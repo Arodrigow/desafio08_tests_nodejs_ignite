@@ -1,3 +1,4 @@
+import { compare } from "bcryptjs";
 import { InMemoryUsersRepository } from "../../repositories/in-memory/InMemoryUsersRepository";
 import { CreateUserError } from "./CreateUserError";
 import { CreateUserUseCase } from "./CreateUserUseCase";
@@ -19,11 +20,13 @@ describe("Create an user", () => {
       password: "1234"
     }
     const user = await createUserUseCase.execute(mockUser);
+    const passwordMatch = await compare(mockUser.password, user.password)
 
     expect(user).toHaveProperty("id");
     expect(user.name).toBe(mockUser.name);
     expect(user.email).toBe(mockUser.email);
     expect(user.password).not.toBe(mockUser.password);
+    expect(passwordMatch).toBe(true);
   });
 
   it("should not be able to create an user with same email", async () => {
