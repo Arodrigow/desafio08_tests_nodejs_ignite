@@ -58,7 +58,7 @@ describe("Integration test of ShowUser Controller", () => {
   it("should not be able to show user profile if token is not valid", async () => {
     const response = await request(app).get("/api/v1/profile")
       .set({
-        Authorization: `Bearer invalidtoken`
+        Authorization: `Bearer tokeninvalid`
       })
 
     expect(response.status).toBe(401);
