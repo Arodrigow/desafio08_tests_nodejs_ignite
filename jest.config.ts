@@ -2,7 +2,7 @@
 export default {
   bail: true,
   clearMocks: true,
-  collectCoverage: false,
+  collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/modules/**/useCases/**/*.ts'],
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',

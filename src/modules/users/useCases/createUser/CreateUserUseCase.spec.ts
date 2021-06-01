@@ -31,20 +31,19 @@ describe("Create an user", () => {
 
   it("should not be able to create an user with same email", async () => {
 
-    expect(async () => {
-      const mockUser: ICreateUserDTO = {
-        name: "Test user",
-        email: "test@user.com",
-        password: "1234"
-      }
-      await createUserUseCase.execute(mockUser);
+    const mockUser: ICreateUserDTO = {
+      name: "Test user",
+      email: "test@user.com",
+      password: "1234"
+    }
+    await createUserUseCase.execute(mockUser);
 
-      const secondMockUser: ICreateUserDTO = {
-        name: "Test user 2",
-        email: "test@user.com",
-        password: "12345"
-      }
-      await createUserUseCase.execute(secondMockUser);
-    }).rejects.toBeInstanceOf(CreateUserError);
+    const secondMockUser: ICreateUserDTO = {
+      name: "Test user 2",
+      email: "test@user.com",
+      password: "12345"
+    }
+    await expect(createUserUseCase.execute(secondMockUser)
+    ).rejects.toEqual(new CreateUserError());
   })
 })
