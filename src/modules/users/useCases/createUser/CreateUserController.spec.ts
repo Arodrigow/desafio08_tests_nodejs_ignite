@@ -23,6 +23,7 @@ describe("Integration test of CreateUser Controller", () => {
       email: "hojteca@roj.yt",
       password: "1234"
     });
+
     expect(response.status).toBe(201);
   });
 })
