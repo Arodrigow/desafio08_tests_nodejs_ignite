@@ -64,7 +64,7 @@ describe("Integration test of GetStatementOperation Controller", () => {
     expect(response.body.message).toBe("JWT token is missing!")
   });
 
-  it("should be able to get a statement operation", async () => {
+  it("should not be able to get a statement operation with an invalid token", async () => {
     const response = await request(app).get(`/api/v1/statements/${statement.body.id}`)
       .set({
         Authorization: `Bearer invalidToken`
