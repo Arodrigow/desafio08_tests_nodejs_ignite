@@ -5,6 +5,7 @@ export type ICreateStatementDTO =
     Statement,
     'user_id' |
     'sender_id' |
+    'receiver_id' |
     'description' |
     'amount' |
     'type'

@@ -13,7 +13,7 @@ export class CreateStatementController {
   async execute(request: Request, response: Response) {
     const { id: user_id } = request.user;
     const { amount, description } = request.body;
-    const { sender_id } = request.params;
+    const { receiver_id } = request.params;
 
     const splittedPath = request.originalUrl.split('/')
     const type = splittedPath.find(tipo => tipo.match("deposit")
@@ -27,7 +27,7 @@ export class CreateStatementController {
       type,
       amount,
       description,
-      sender_id
+      receiver_id
     });
 
     return response.status(201).json(statement);

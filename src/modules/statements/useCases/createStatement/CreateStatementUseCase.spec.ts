@@ -44,6 +44,8 @@ describe("Creating a statement for an user", () => {
   beforeEach(() => {
     statement = {
       user_id: user.id as string,
+      sender_id: user.id as string,
+      receiver_id: user.id as string,
       amount: 100,
       description: "test description",
       type: "DEPOSIT" as OperationType

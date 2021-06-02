@@ -16,6 +16,7 @@ export class StatementsRepository implements IStatementsRepository {
   async create({
     user_id,
     sender_id,
+    receiver_id,
     amount,
     description,
     type
@@ -23,6 +24,7 @@ export class StatementsRepository implements IStatementsRepository {
     const statement = this.repository.create({
       user_id,
       sender_id,
+      receiver_id,
       amount,
       description,
       type
@@ -46,10 +48,12 @@ export class StatementsRepository implements IStatementsRepository {
     });
 
     const balance = statement.reduce((acc, operation) => {
-      if (operation.type === 'deposit') {
-        return acc + operation.amount;
+      if (operation.type === 'deposit' || (operation.type === 'transfer'
+        && statement.find(statements => statements.receiver_id === user_id) != undefined)) {
+
+        return Number(acc) + Number(operation.amount);
       } else {
-        return acc - operation.amount;
+        return Number(acc) - Number(operation.amount);
       }
     }, 0)
 
